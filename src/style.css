@@ -89,9 +89,51 @@ button {
     padding: 10px 14px;
     width: 100%;
     border-radius: 5px;
+    background: var(--bgColor);
   
 }
 
 .drop p {
     margin:5px;
+}
+
+.countries{
+    padding: 80px;
+    display: grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px, 1fr)) ;
+    grid-gap:10px;
+}
+
+.country{
+    min-height: 350px;
+    box-shadow:0 0 5px rgba(0,0,0,0.3);
+    width: 300px;
+    overflow: hidden;
+
+}
+
+.country-img {
+    height:250px;
+}
+
+.country-img img{
+    width: 100%;
+    height: 100%;
+}
+
+.country-info {
+    padding: 20px 17px;
+}
+
+.country-info h5 {
+    padding: 10px 0;
+    font-size: medium;
+    font-weight: 400;
+}
+
+.country-info p{
+    letter-spacing:1px;
+}
+.country-info p>strong{
+    font-weight: 600;
 }
