@@ -1,17 +1,24 @@
-const countriesElem=document.querySelector(".countries")
+const countriesList=document.querySelector(".countries")
+const dropDown=document.querySelector(".dropDown")
+const dropList =  document.querySelector(".drop")
+const continent = document.querySelectorAll(".continent")
+
+
+
+
 
 async function getCountry(){
-    const url=await fetch("https://restcountries.com/v3.1/all");
-    const res=await url.json();
-    console.log(res)
-    res.forEach(element => {
-        showCountry(element)
+    const countriesUrl=await fetch("https://restcountries.com/v3.1/all");
+    const response=await countriesUrl.json();
+    console.log(response)
+    response.forEach(element => {
+        allCountry(element)
     });
   
 }
 
 getCountry()
-function showCountry(data){
+function allCountry(data){
         const country=document.createElement("div")
         country.classList.add("country")
         country.innerHTML = ` <div class="country-img">
@@ -23,5 +30,17 @@ function showCountry(data){
         <p><strong>Region: </strong>${data.region}</p>
         <p><strong>Capital: </strong>${data.capital}</p>
     </div>`;
-    countriesElem.appendChild(country)
+    countriesList.appendChild(country)
+
+    
 }
+
+dropDown.addEventListener("click", ()=>{
+    dropList.classList.toggle("showDropDown")
+})
+
+continent.forEach(element => {
+     element.addEventListener("click",()=>{
+         console.log(element.innerHTML)
+     })
+})

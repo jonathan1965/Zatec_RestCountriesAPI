@@ -90,7 +90,12 @@ button {
     width: 100%;
     border-radius: 5px;
     background: var(--bgColor);
+    cursor: pointer;
   
+}
+
+i {
+    cursor: pointer;
 }
 
 .drop p {
@@ -137,4 +142,8 @@ button {
 }
 .country-info p>strong{
     font-weight: 600;
+}
+
+.showDropDown{
+    display:none;
 }
