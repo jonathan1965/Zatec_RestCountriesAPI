@@ -1,12 +1,23 @@
+const loader = document.querySelector('.loader')
+const main = document.querySelector('.main')
+
+function init(){
+    setTimeout(()=>{
+         loader.style.opacity=0;
+         loader.style.display='none';
+         main.style.display = 'block'
+
+         setTimeout(()=>( main.style.opacity=1),50) // firtymile sec
+        
+    },4000)
+}
+
+init()
+
 const countriesList=document.querySelector(".countries")
 const dropDown=document.querySelector(".dropDown")
 const dropList =  document.querySelector(".drop")
-const continent = document.querySelectorAll(".continent")
-
-
-
-
-
+const continent = document.querySelectorAll (".continent")
 async function getCountry(){
     const countriesUrl=await fetch("https://restcountries.com/v3.1/all");
     const response=await countriesUrl.json();

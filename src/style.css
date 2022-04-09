@@ -1,5 +1,8 @@
 @import url("https://font.google.com/specimen/Nunito+Sans");
 
+
+
+
 * {
     margin: 0;
     padding: 0;
@@ -12,9 +15,15 @@ body{
     --bgColor:hsl(0,0%,98%);
     --fontColor:hsl(200,15%,8%);
     font-family:"Nunito+Sans", sans-serif;
+    position: relative;
 
 }
 
+.main {
+   opacity: 0;
+   display: none; 
+   transition: opacity 2s ease-in;
+}
 .container {
     width:100%;
     padding: 30px;
