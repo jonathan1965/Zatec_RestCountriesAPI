@@ -30,8 +30,8 @@ async function getCountry(){
     });
   
 }
-
 getCountry()
+
 function allCountry(data){
         const country=document.createElement("div")
         country.classList.add("country")
@@ -70,3 +70,6 @@ regionContinent.forEach(element => {
         })
      })
 })
+
+
+// Search Region continent 

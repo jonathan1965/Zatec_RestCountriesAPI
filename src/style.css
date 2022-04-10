@@ -130,6 +130,7 @@ i {
 
 .country-img {
     height:220px;
+    object-fit: cover;
 }
 
 .country-img img{
