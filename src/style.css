@@ -121,14 +121,15 @@ i {
 
 .country{
     min-height: 350px;
-    box-shadow:0 0 5px rgba(0,0,0,0.3);
-    width: 300px;
+    box-shadow:0 0 5px rgba(0, 0, 0, 0.419);
+    width: 330px;
     overflow: hidden;
+    border-radius: 10px;
 
 }
 
 .country-img {
-    height:250px;
+    height:220px;
 }
 
 .country-img img{

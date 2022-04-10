@@ -9,7 +9,7 @@ function init(){
 
          setTimeout(()=>( main.style.opacity=1),50) // firtymile sec
         
-    },4000)
+    },2000)
 }
 
 init()
@@ -17,7 +17,10 @@ init()
 const countriesList=document.querySelector(".countries")
 const dropDown=document.querySelector(".dropDown")
 const dropList =  document.querySelector(".drop")
-const continent = document.querySelectorAll (".continent")
+const regionContinent = document.querySelectorAll (".continent")
+
+
+
 async function getCountry(){
     const countriesUrl=await fetch("https://restcountries.com/v3.1/all");
     const response=await countriesUrl.json();
@@ -38,7 +41,7 @@ function allCountry(data){
     <div class="country-info">
         <h5>${data.name.common}</h5>
         <p><strong>Population: </strong>${data.population}</p>
-        <p><strong>Region: </strong>${data.region}</p>
+        <p class="regionName"><strong>Region: </strong>${data.region}</p>
         <p><strong>Capital: </strong>${data.capital}</p>
     </div>`;
     countriesList.appendChild(country)
@@ -46,12 +49,24 @@ function allCountry(data){
     
 }
 
+// DropDown list of Continent
 dropDown.addEventListener("click", ()=>{
     dropList.classList.toggle("showDropDown")
 })
 
-continent.forEach(element => {
+
+// Select Region continent 
+const regionName = document.getElementsByClassName("regionName")
+regionContinent.forEach(element => {
      element.addEventListener("click",()=>{
-         console.log(element.innerHTML)
+        console.log(element)
+        Array.from(regionName).forEach(elem=>{
+            console.log(elem.innerText)
+            if(elem.innerText.includes(element.innerText) || element.innerText=="All") {
+                elem.parentElement.parentElement.style.display="grid"
+            } else {
+                elem.parentElement.parentElement.style.display="none"
+            }
+        })
      })
 })
