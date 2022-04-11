@@ -1,7 +1,7 @@
 const loader = document.querySelector('.loader')
 const main = document.querySelector('.main')
 
-function init(){
+function snipperLoder(){
     setTimeout(()=>{
          loader.style.opacity=0;
          loader.style.display='none';
@@ -9,15 +9,15 @@ function init(){
 
          setTimeout(()=>( main.style.opacity=1),50) // firtymile sec
         
-    },2000)
+    },4000)
 }
-
-init()
+snipperLoder()
 
 const countriesList=document.querySelector(".countries")
 const dropDown=document.querySelector(".dropDown")
 const dropList =  document.querySelector(".drop")
-const regionContinent = document.querySelectorAll (".continent")
+const regionContinent = document.querySelectorAll(".continent")
+const searchCountry = document.querySelector(".searchCountry")
 
 
 
@@ -39,14 +39,13 @@ function allCountry(data){
         <img src="${data.flags.png}" alt="">
     </div>
     <div class="country-info">
-        <h5>${data.name.common}</h5>
+        <h5 class="countryName">${data.name.common}</h5>
         <p><strong>Population: </strong>${data.population}</p>
         <p class="regionName"><strong>Region: </strong>${data.region}</p>
         <p><strong>Capital: </strong>${data.capital}</p>
     </div>`;
     countriesList.appendChild(country)
-
-    
+  
 }
 
 // DropDown list of Continent
@@ -57,6 +56,7 @@ dropDown.addEventListener("click", ()=>{
 
 // Select Region continent 
 const regionName = document.getElementsByClassName("regionName")
+const countryName = document.getElementsByClassName("countryName")
 regionContinent.forEach(element => {
      element.addEventListener("click",()=>{
         console.log(element)
@@ -72,4 +72,15 @@ regionContinent.forEach(element => {
 })
 
 
-// Search Region continent 
+// search country
+
+searchCountry.addEventListener("input",() =>{
+    console.log(searchCountry.value.toLowerCase())
+    Array.from(countryName).forEach(elem=>{
+        if(elem.innerText.toLowerCase().includes(searchCountry.value.toLowerCase())) {
+            elem.parentElement.parentElement.style.display="grid"
+        } else {
+            elem.parentElement.parentElement.style.display="none"
+        }
+    })
+})
