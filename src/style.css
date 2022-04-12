@@ -19,12 +19,12 @@ body{
 
 }
 
-.main {
+.sectionTwo {
    opacity: 0;
    display: none; 
    transition: opacity 2s ease-in;
 }
-.container {
+.wrapper {
     width:100%;
     padding: 30px;
     display: flex;
@@ -72,12 +72,12 @@ button {
     opacity: 0.3 ;
 }
 
-.dropDownCon{
+.filterCon{
     width:200px;
     position:relative;
 }
 
-.dropDown{
+.filterReg{
     width: 100%;
     padding:17px 14px;
     border-radius: 5px;
@@ -88,10 +88,10 @@ button {
     font-size: 15px;
 }
 
-.dropDrown p {
+.filterReg p {
     letter-spacing: 0.5px;
 }
-.drop{
+.list{
     position:absolute; 
     box-shadow:0 0 5px rgba(0,0,0,0.3);
     top:4rem;
@@ -107,11 +107,11 @@ i {
     cursor: pointer;
 }
 
-.drop p {
+.list h3 {
     margin:5px;
 }
 
-.countries{
+.countriesList{
     padding: 80px;
     display: grid;
     grid-template-columns:repeat(auto-fit,minmax(300px, 1fr)) ;
@@ -138,24 +138,24 @@ i {
     height: 100%;
 }
 
-.country-info {
+.country-data {
     padding: 20px 17px;
 }
 
-.country-info h5 {
+.country-data h3 {
     padding: 10px 0;
     font-size: medium;
     font-weight: 400;
 }
 
-.country-info p{
+.country-data p{
     letter-spacing:1px;
 }
-.country-info p>strong{
+.country-data p>strong{
     font-weight: 600;
 }
 
-.showDropDown{
+.showlist{
     display:none;
 }
 

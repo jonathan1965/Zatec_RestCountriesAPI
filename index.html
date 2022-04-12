@@ -11,46 +11,37 @@
 </head>
 <body>
 
-    <!-- Loader Spinner -->
+ <section class="spinnerLoader">
      <div class="loader">
          <div class="circle"></div>
          <div class="circle"></div>
      </div>
-    
-    <!-- End Of Spinner -->
-
-  <section class="main">
-      <div class="container shadow">
+</section>
+<section class="sectionTwo">
+      <div class="wrapper shadow">
          <h3>Pick your Favority Country</h3>
           <button class="za-btn"><i class="fa fa-landmark"></i>Zatec</button>
      </div>
-     <div class="container ">
+     <div class="wrapper ">
           <div class="form-control">
-               <input type="text" placeholder="Search Country" class="searchCountry">
-               <i class="fas fa-search search"></i>
+               <input type="text" placeholder="Search Country" class="searchCountry"><i class="fas fa-search search"></i>
           </div>
-          <div class="dropDownCon">
-                <div class="dropDown">
+          <div class="filterCon">
+                <div class="filterReg">
                   <p>Filter By Region</p>
                   <button><i class="fas fa-chevron-down"></i></button>
                 </div>
-                <div class="drop showDropDown">
-                    <p class="continent">All</p>
-                    <p class="continent">Africa</p>
-                    <p class="continent">America</p>
-                    <p class="continent">Asia</p>
-                    <p class="continent">Europe</p>
-                    <p class="continent">Oceania</p>
+                <div class="list showlist">
+                    <h3 class="continent">All</h3><h3 class="continent">Africa</h3>
+                    <h3 class="continent">America</h3><h3 class="continent">Asia</h3>
+                    <h3 class="continent">Europe</h3><h3 class="continent">Oceania</h3>
                 </div>
           </div>
      </div>
-     <div class="countries">
+     <div class="countriesList">
      </div>
-
      <div class="countrySelf show">
-       
     </div>
- 
 </section>
 <script src="/src/index.js"></script>
 </body>

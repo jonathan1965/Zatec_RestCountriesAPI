@@ -1,56 +1,46 @@
 const loader = document.querySelector('.loader')
-const main = document.querySelector('.main')
+const sectionTwo = document.querySelector('.sectionTwo')
 
 function snipperLoder(){
     setTimeout(()=>{
          loader.style.opacity=0;
          loader.style.display='none';
-         main.style.display = 'block'
+         sectionTwo.style.display = 'block'
 
-         setTimeout(()=>( main.style.opacity=1),50) // firtymile sec
+         setTimeout(()=>( sectionTwo.style.opacity=1),50) // firtymile sec
         
-    },4000)
+    },000)
 }
 snipperLoder()
 
-const countriesList=document.querySelector(".countries")
-const dropDown=document.querySelector(".dropDown")
-const dropList =  document.querySelector(".drop")
+const countriesList=document.querySelector(".countriesList")
+const filterReg=document.querySelector(".filterReg")
+const optionList =  document.querySelector(".list")
 const regionContinent = document.querySelectorAll(".continent")
 const searchCountry = document.querySelector(".searchCountry")
 
 
 // fetch Data
-async function getCountry(){
+async function accessCountry(){
     const countriesUrl=await fetch("https://restcountries.com/v3.1/all");
     const response=await countriesUrl.json();
      console.log(response)
-    response.forEach(element => {
-        allCountry(element)
+    response.forEach(values => {
+        viewCountry(values)
     });
 }
-getCountry()
+
+accessCountry()
 
 
-
-// function currenciesAll(data) {
-//      let one = data
-//   for (let i = 0; i < data.length; i++) {
-//       console.log(data[i]) 
-//   }
-// }
-
-// currenciesAll()
-
-
-function allCountry(data){
+function viewCountry(data){
         const country=document.createElement("div")
         country.classList.add("country")
         country.innerHTML = ` <div class="country-img">
         <img src="${data.flags.png}" alt="">
     </div>
-    <div class="country-info">
-        <h5 class="countryName">${data.name.common}</h5>
+    <div class="country-data">
+        <h3 class="countryName">${data.name.common}</h3>
         <p><strong>Population: </strong>${data.population}</p>
         <p class="regionName"><strong>Region: </strong>${data.region}</p>
         <p><strong>Capital: </strong>${data.capital}</p>
@@ -63,9 +53,9 @@ function allCountry(data){
 
 
 
-// DropDown list of Continent
-dropDown.addEventListener("click", ()=>{
-    dropList.classList.toggle("showDropDown")
+// Drop list of Continent
+filterReg.addEventListener("click", ()=>{
+    optionList.classList.toggle("showlist")
 })
 
 
@@ -73,15 +63,15 @@ dropDown.addEventListener("click", ()=>{
 const regionName = document.getElementsByClassName("regionName")
 const countryName = document.getElementsByClassName("countryName")
 
-regionContinent.forEach(element => {
-     element.addEventListener("click",()=>{
-        console.log(element)
-        Array.from(regionName).forEach(elem=>{
-            //console.log(elem.innerText)
-            if(elem.innerText.includes(element.innerText) || element.innerText=="All") {
-                elem.parentElement.parentElement.style.display="grid"
+regionContinent.forEach(values => {
+    values.addEventListener("click",()=>{
+       // console.log(values)
+        Array.from(regionName).forEach(value=>{
+            console.log(value.innerText)
+            if(value.innerText.includes(values.innerText) || values.innerText=="All") {
+                value.parentElement.parentElement.style.display="grid"
             } else {
-                elem.parentElement.parentElement.style.display="none"
+                value.parentElement.parentElement.style.display="none"
             }
         })
      })
@@ -92,11 +82,11 @@ regionContinent.forEach(element => {
 
 searchCountry.addEventListener("input",() =>{
     console.log(searchCountry.value.toLowerCase())
-    Array.from(countryName).forEach(elem=>{
-        if(elem.innerText.toLowerCase().includes(searchCountry.value.toLowerCase())) {
-            elem.parentElement.parentElement.style.display="grid"
+    Array.from(countryName).forEach(value=>{
+        if(value.innerText.toLowerCase().includes(searchCountry.value.toLowerCase())) {
+            value.parentElement.parentElement.style.display="grid"
         } else {
-            elem.parentElement.parentElement.style.display="none"
+            value.parentElement.parentElement.style.display="none"
         }
     })
 })
@@ -123,7 +113,7 @@ function showCountrDetail(data) {
                
                <p ><strong>Continents: </strong>${data.continents}</p>
                <p ><strong>Currencies </strong>${data.currencies}</p>
-               <p><strong>Language: </strong>${data.languages}</p>
+               <p><strong>StartOfWeek: </strong>${data.startOfWeek}</p>
            </div>
           </div>
         </div>
