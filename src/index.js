@@ -20,17 +20,28 @@ const regionContinent = document.querySelectorAll(".continent")
 const searchCountry = document.querySelector(".searchCountry")
 
 
-
+// fetch Data
 async function getCountry(){
     const countriesUrl=await fetch("https://restcountries.com/v3.1/all");
     const response=await countriesUrl.json();
-    console.log(response)
+     console.log(response)
     response.forEach(element => {
         allCountry(element)
     });
-  
 }
 getCountry()
+
+
+
+// function currenciesAll(data) {
+//      let one = data
+//   for (let i = 0; i < data.length; i++) {
+//       console.log(data[i]) 
+//   }
+// }
+
+// currenciesAll()
+
 
 function allCountry(data){
         const country=document.createElement("div")
@@ -45,8 +56,12 @@ function allCountry(data){
         <p><strong>Capital: </strong>${data.capital}</p>
     </div>`;
     countriesList.appendChild(country)
-  
+    country.addEventListener("click",()=>{
+        showCountrDetail(data)
+    })
 }
+
+
 
 // DropDown list of Continent
 dropDown.addEventListener("click", ()=>{
@@ -54,14 +69,15 @@ dropDown.addEventListener("click", ()=>{
 })
 
 
-// Select Region continent 
+// Select Region continent filter
 const regionName = document.getElementsByClassName("regionName")
 const countryName = document.getElementsByClassName("countryName")
+
 regionContinent.forEach(element => {
      element.addEventListener("click",()=>{
         console.log(element)
         Array.from(regionName).forEach(elem=>{
-            console.log(elem.innerText)
+            //console.log(elem.innerText)
             if(elem.innerText.includes(element.innerText) || element.innerText=="All") {
                 elem.parentElement.parentElement.style.display="grid"
             } else {
@@ -84,3 +100,38 @@ searchCountry.addEventListener("input",() =>{
         }
     })
 })
+
+// selfCountry
+const countrySelf=document.querySelector(".countrySelf")
+function showCountrDetail(data) {
+    countrySelf.classList.toggle("show")
+    countrySelf.innerHTML=`
+      <button class="backHome">Back</button>
+    <div class="model">
+        <div class="leftMode">
+           <img src="${data.flags.png}" alt="">
+        </div>
+        <div class="rightModal">
+           <h1>${data.name.common}</h1>
+          <div class="modalInfo">
+           <div class="innerLeft inner">
+                <p><strong>Capital: </strong>${data.capital}</p>
+               <p class=""><strong>Population: </strong>${data.population}</p>
+               <p><strong>Timezones: </strong>${data.timezones}</p>
+           </div>
+           <div class="innerRight inner">
+               
+               <p ><strong>Continents: </strong>${data.continents}</p>
+               <p ><strong>Currencies </strong>${data.currencies}</p>
+               <p><strong>Language: </strong>${data.languages}</p>
+           </div>
+          </div>
+        </div>
+    </div>`
+
+const backHome=countrySelf.querySelector(".backHome")
+backHome.addEventListener("click",()=>{
+    countrySelf.classList.toggle("show")
+})
+}
+
