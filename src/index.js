@@ -1,42 +1,39 @@
-const loader = document.querySelector('.loader')
-const sectionTwo = document.querySelector('.sectionTwo')
+const loader = document.querySelector(".loader");
+const sectionTwo = document.querySelector(".sectionTwo");
 
-function snipperLoder(){
-    setTimeout(()=>{
-         loader.style.opacity=0;
-         loader.style.display='none';
-         sectionTwo.style.display = 'block'
+function snipperLoder() {
+  setTimeout(() => {
+    loader.style.opacity = 0;
+    loader.style.display = "none";
+    sectionTwo.style.display = "block";
 
-         setTimeout(()=>( sectionTwo.style.opacity=1),50) // firtymile sec
-        
-    },000)
+    setTimeout(() => (sectionTwo.style.opacity = 1), 50); // firtymile sec
+  }, 4000);
 }
-snipperLoder()
+snipperLoder();
 
-const countriesList=document.querySelector(".countriesList")
-const filterReg=document.querySelector(".filterReg")
-const optionList =  document.querySelector(".list")
-const regionContinent = document.querySelectorAll(".continent")
-const searchCountry = document.querySelector(".searchCountry")
-
+const countriesList = document.querySelector(".countriesList");
+const filterReg = document.querySelector(".filterReg");
+const optionList = document.querySelector(".list");
+const regionContinent = document.querySelectorAll(".continent");
+const searchCountry = document.querySelector(".searchCountry");
 
 // fetch Data
-async function accessCountry(){
-    const countriesUrl=await fetch("https://restcountries.com/v3.1/all");
-    const response=await countriesUrl.json();
-     console.log(response)
-    response.forEach(values => {
-        viewCountry(values)
-    });
+async function accessCountry() {
+  const countriesUrl = await fetch("https://restcountries.com/v3.1/all");
+  const response = await countriesUrl.json();
+  console.log(response);
+  response.forEach((values) => {
+    viewCountry(values);
+  });
 }
 
-accessCountry()
+accessCountry();
 
-
-function viewCountry(data){
-        const country=document.createElement("div")
-        country.classList.add("country")
-        country.innerHTML = ` <div class="country-img">
+function viewCountry(data) {
+  const country = document.createElement("div");
+  country.classList.add("country");
+  country.innerHTML = ` <div class="country-img">
         <img src="${data.flags.png}" alt="">
     </div>
     <div class="country-data">
@@ -45,57 +42,58 @@ function viewCountry(data){
         <p class="regionName"><strong>Region: </strong>${data.region}</p>
         <p><strong>Capital: </strong>${data.capital}</p>
     </div>`;
-    countriesList.appendChild(country)
-    country.addEventListener("click",()=>{
-        showCountrDetail(data)
-    })
+  countriesList.appendChild(country);
+  country.addEventListener("click", () => {
+    showCountrDetail(data);
+  });
 }
 
-
-
 // Drop list of Continent
-filterReg.addEventListener("click", ()=>{
-    optionList.classList.toggle("showlist")
-})
-
+filterReg.addEventListener("click", () => {
+  optionList.classList.toggle("showlist");
+});
 
 // Select Region continent filter
-const regionName = document.getElementsByClassName("regionName")
-const countryName = document.getElementsByClassName("countryName")
+const regionName = document.getElementsByClassName("regionName");
+const countryName = document.getElementsByClassName("countryName");
 
-regionContinent.forEach(values => {
-    values.addEventListener("click",()=>{
-       // console.log(values)
-        Array.from(regionName).forEach(value=>{
-            console.log(value.innerText)
-            if(value.innerText.includes(values.innerText) || values.innerText=="All") {
-                value.parentElement.parentElement.style.display="grid"
-            } else {
-                value.parentElement.parentElement.style.display="none"
-            }
-        })
-     })
-})
-
+regionContinent.forEach((values) => {
+  values.addEventListener("click", () => {
+    // console.log(values)
+    Array.from(regionName).forEach((value) => {
+      console.log(value.innerText);
+      if (
+        value.innerText.includes(values.innerText) ||
+        values.innerText == "All"
+      ) {
+        value.parentElement.parentElement.style.display = "grid";
+      } else {
+        value.parentElement.parentElement.style.display = "none";
+      }
+    });
+  });
+});
 
 // search country
 
-searchCountry.addEventListener("input",() =>{
-    console.log(searchCountry.value.toLowerCase())
-    Array.from(countryName).forEach(value=>{
-        if(value.innerText.toLowerCase().includes(searchCountry.value.toLowerCase())) {
-            value.parentElement.parentElement.style.display="grid"
-        } else {
-            value.parentElement.parentElement.style.display="none"
-        }
-    })
-})
+searchCountry.addEventListener("input", () => {
+  console.log(searchCountry.value.toLowerCase());
+  Array.from(countryName).forEach((value) => {
+    if (
+      value.innerText.toLowerCase().includes(searchCountry.value.toLowerCase())
+    ) {
+      value.parentElement.parentElement.style.display = "grid";
+    } else {
+      value.parentElement.parentElement.style.display = "none";
+    }
+  });
+});
 
 // selfCountry
-const countrySelf=document.querySelector(".countrySelf")
+const countrySelf = document.querySelector(".countrySelf");
 function showCountrDetail(data) {
-    countrySelf.classList.toggle("show")
-    countrySelf.innerHTML=`
+  countrySelf.classList.toggle("show");
+  countrySelf.innerHTML = `
       <button class="backHome">Back</button>
     <div class="model">
         <div class="leftMode">
@@ -117,11 +115,10 @@ function showCountrDetail(data) {
            </div>
           </div>
         </div>
-    </div>`
+    </div>`;
 
-const backHome=countrySelf.querySelector(".backHome")
-backHome.addEventListener("click",()=>{
-    countrySelf.classList.toggle("show")
-})
+  const backHome = countrySelf.querySelector(".backHome");
+  backHome.addEventListener("click", () => {
+    countrySelf.classList.toggle("show");
+  });
 }
-
